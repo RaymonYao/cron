@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//任务执行器
+// Executor 任务执行器
 type Executor struct {
 }
 
@@ -39,7 +39,7 @@ func (executor *Executor) ExecuteJob(info *common.JobExecuteInfo) {
 		result.StartTime = time.Now()
 
 		//上锁
-		//随机睡眠(0-1s)
+		//随机睡眠(0-1s) 为了防止各个服务器时间不准导致的抢锁不公平，正常情况下各个服务器会用ntp时间服务器进行时间同步
 		time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
 
 		err = jobLock.TryLock()

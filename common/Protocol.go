@@ -53,7 +53,7 @@ type JobExecuteResult struct {
 	EndTime     time.Time       //结束时间
 }
 
-//任务执行日志
+// JobLog 任务执行日志
 type JobLog struct {
 	JobName      string `bson:"jobName" json:"jobName"`           //任务名字
 	Command      string `bson:"command" json:"command"`           //脚本命令
@@ -65,17 +65,17 @@ type JobLog struct {
 	EndTime      int64  `bson:"endTime" json:"endTime"`           //任务执行结束时间
 }
 
-// 日志批次
+// LogBatch 日志批次
 type LogBatch struct {
 	Logs []interface{} //多条日志
 }
 
-//任务日志过滤条件
+// JobLogFilter 任务日志过滤条件
 type JobLogFilter struct {
 	JobName string `bson:"jobName"`
 }
 
-//任务日志排序规则
+// SortLogByStartTime 任务日志排序规则
 type SortLogByStartTime struct {
 	SortOrder int `bson:"startTime"` //{startTime:-1}
 }
@@ -115,12 +115,12 @@ func ExtractJobName(jobKey string) string {
 	return strings.TrimPrefix(jobKey, JOB_SAVE_DIR)
 }
 
-// 从/cron/killer/job10提取job10
+// ExtractKillerName 从/cron/killer/job10提取job10
 func ExtractKillerName(killerKey string) string {
 	return strings.TrimPrefix(killerKey, JOB_KILLER_DIR)
 }
 
-//任务变化事件有2种，1)更新任务 2)删除任务
+// BuildJobEvent 任务变化事件有2种，1)更新任务 2)删除任务
 func BuildJobEvent(eventType int, job *Job) (jobEvent *JobEvent) {
 	return &JobEvent{
 		EventType: eventType,
@@ -128,7 +128,7 @@ func BuildJobEvent(eventType int, job *Job) (jobEvent *JobEvent) {
 	}
 }
 
-//构造任务执行计划
+// BuildJobSchedulePlan 构造任务执行计划
 func BuildJobSchedulePlan(job *Job) (jobSchedulePlan *JobSchedulePlan, err error) {
 	var (
 		expr *cronexpr.Expression

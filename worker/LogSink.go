@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-//mongodb存储日志
+// LogSink mongodb存储日志
 type LogSink struct {
 	client         *mongo.Client
 	logCollection  *mongo.Collection
@@ -43,6 +43,9 @@ func (logSink *LogSink) writeLoop() {
 				//让这个批次超时自动提交(给1秒的时间)
 				commitTimer = time.AfterFunc(
 					time.Duration(GConfig.JobLogCommitTimeout)*time.Millisecond,
+					//1.闭包写法，为了batch变量不受外面污染
+					//2.之所以要autoCommitChan是因为要串行化(因为是for循环)，避免并发，writeLoop协程在提交数据，定时器也在提交数据，容易并发操作，
+					//定义autoCommitChan协程可以解决这个问题，这里仅仅是发出超时通知，不要直接提交数据
 					func(batch *common.LogBatch) func() {
 						return func() {
 							logSink.autoCommitChan <- batch

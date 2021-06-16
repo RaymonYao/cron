@@ -57,7 +57,7 @@ func main() {
 	}
 
 	//启动执行器
-	if err = worker.InitLogSink(); err != nil {
+	if err = worker.InitExecutor(); err != nil {
 		common.FmtErr(err)
 	}
 
