@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-//注册节点到etcd: /cron/workers/IP地址
+// Register 注册节点到etcd: /cron/workers/IP地址
 type Register struct {
 	client  *clientv3.Client
 	kv      clientv3.KV
@@ -17,7 +17,7 @@ type Register struct {
 }
 
 var (
-	G_register *Register
+	GRegister *Register
 )
 
 //获取本机网卡IP
@@ -132,7 +132,7 @@ func InitRegister() (err error) {
 	kv = clientv3.NewKV(client)
 	lease = clientv3.NewLease(client)
 
-	G_register = &Register{
+	GRegister = &Register{
 		client:  client,
 		kv:      kv,
 		lease:   lease,
@@ -140,6 +140,6 @@ func InitRegister() (err error) {
 	}
 
 	//服务注册
-	go G_register.keepOnline()
+	go GRegister.keepOnline()
 	return
 }

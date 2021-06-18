@@ -41,10 +41,10 @@ func main() {
 	//	common.FmtErr(err)
 	//}
 	//
-	////日志管理器
-	//if err = master.InitLogMgr(); err != nil {
-	//	common.FmtErr(err)
-	//}
+	//日志管理器
+	if err = master.InitLogMgr(); err != nil {
+		common.FmtErr(err)
+	}
 
 	//任务管理器
 	if err = master.InitJobMgr(); err != nil {
