@@ -36,11 +36,11 @@ func main() {
 		common.FmtErr(err)
 	}
 
-	////初始化服务发现模块
-	//if err = master.InitWorkerMgr(); err != nil {
-	//	common.FmtErr(err)
-	//}
-	//
+	//初始化服务发现模块
+	if err = master.InitWorkerMgr(); err != nil {
+		common.FmtErr(err)
+	}
+
 	//日志管理器
 	if err = master.InitLogMgr(); err != nil {
 		common.FmtErr(err)
