@@ -106,7 +106,6 @@ func handleJobKill(resp http.ResponseWriter, req *http.Request) {
 	var (
 		err  error
 		name string
-		//bytes []byte
 	)
 
 	//解析POST表单
@@ -137,7 +136,6 @@ func handleJobLog(resp http.ResponseWriter, req *http.Request) {
 		skip       int
 		limit      int
 		logArr     []*common.JobLog
-		_          []byte
 	)
 
 	//解析Get参数

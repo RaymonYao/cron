@@ -90,7 +90,7 @@ func BuildResponse(errno int, msg string, data interface{}) (resp []byte, err er
 	response.Msg = msg
 	response.Data = data
 
-	//序列话json
+	//序列化json
 	resp, err = json.Marshal(response)
 	return
 }
@@ -109,7 +109,7 @@ func UnpackJob(value []byte) (ret *Job, err error) {
 	return
 }
 
-//从etcd的key中提取任务名
+// ExtractJobName 从etcd的key中提取任务名
 // /cron/jobs/job10抹掉/cron/jobs/
 func ExtractJobName(jobKey string) string {
 	return strings.TrimPrefix(jobKey, JOB_SAVE_DIR)
@@ -158,7 +158,7 @@ func BuildJobExecuteInfo(jobSchedulePlan *JobSchedulePlan) (jobExecuteInfo *JobE
 	return
 }
 
-//提取worker的IP
+// ExtractWorkerIP 提取worker的IP
 func ExtractWorkerIP(regKey string) string {
 	return strings.TrimPrefix(regKey, JOB_WORKER_DIR)
 }

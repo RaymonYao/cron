@@ -19,7 +19,7 @@ var (
 	GWorkerMgr *WorkerMgr
 )
 
-//获取在线worker列表
+// ListWorkers 获取在线worker列表
 func (workerMgr *WorkerMgr) ListWorkers() (workerArr []string, err error) {
 	var (
 		getResp  *clientv3.GetResponse
