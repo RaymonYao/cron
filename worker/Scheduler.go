@@ -171,7 +171,7 @@ func (scheduler *Scheduler) scheduleLoop() {
 		}
 		//调度一次任务
 		scheduleAfter = scheduler.TrySchedule()
-		//重置调度间隔
+		//重置调度间隔，不至于每时每刻都去遍历任务去调度，节省性能
 		scheduleTimer.Reset(scheduleAfter)
 	}
 }

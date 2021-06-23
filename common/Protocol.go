@@ -95,7 +95,7 @@ func BuildResponse(errno int, msg string, data interface{}) (resp []byte, err er
 	return
 }
 
-//反序列化Job
+// UnpackJob 反序列化Job
 func UnpackJob(value []byte) (ret *Job, err error) {
 	var (
 		job *Job

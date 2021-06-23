@@ -168,7 +168,6 @@ func handleWorkerList(resp http.ResponseWriter, req *http.Request) {
 	var (
 		workerArr []string
 		err       error
-		_         []byte
 	)
 
 	if workerArr, err = GWorkerMgr.ListWorkers(); err != nil {

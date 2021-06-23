@@ -105,7 +105,7 @@ FAIL:
 	return
 }
 
-//释放锁
+// Unlock 释放锁
 func (jobLock *JobLock) Unlock() {
 	if jobLock.isLocked {
 		jobLock.cancelFunc()                                  //取消我们程序自动续租的协程
